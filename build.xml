@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="svntag">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="svntag.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/svnkit-1.8.9.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-api-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-1.2-api-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-1.2-api-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-1.2-api-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-api-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-api-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2-tests.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-flume-ng-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-flume-ng-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-flume-ng-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-iostreams-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-iostreams-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-iostreams-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jcl-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jcl-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jcl-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jmx-gui-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jmx-gui-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jmx-gui-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jul-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jul-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jul-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-nosql-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-nosql-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-nosql-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-slf4j-impl-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-slf4j-impl-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-slf4j-impl-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-taglib-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-taglib-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-taglib-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-to-slf4j-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-to-slf4j-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-to-slf4j-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-web-2.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-web-2.2-javadoc.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-web-2.2-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-antlr.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-bcel.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-bsf.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-log4j.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-oro.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-regexp.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-resolver.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-xalan2.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-commons-logging.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-commons-net.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-jai.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-javamail.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-jdepend.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-jmf.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-jsch.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-junit.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-junit4.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-launcher.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-netrexx.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-swing.jar"/>
+        <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-testutil.jar"/>
+        <pathelement location="D:/搜狗高速下载/tao_reviewboard/tao_reviewboard/update_site/plugins/com.taobao.eclipse.plugin.reviewboard.core_1.1.0.201403061303.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/antlr-runtime-3.4.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jna-4.1.0.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jna-platform-4.1.0.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.connector-factory-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.core-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.pageant-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.sshagent-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.svnkit-trilead-ssh2-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.usocket-jna-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/jsch.agentproxy.usocket-nc-0.0.7.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/sequence-library-1.0.3.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/sqljet-1.1.10.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/svnkit-cli-1.8.9.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/svnkit-javahl16-1.8.9.jar"/>
+        <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/trilead-ssh2-1.0.0-build217.jar"/>
+        <pathelement location="D:/搜狗高速下载/jython-installer-2.7-rc3/jython.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="svntag.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="ant">
+        <java classname="svntag.ant" failonerror="true" fork="yes">
+            <classpath refid="svntag.classpath"/>
+        </java>
+    </target>
+    <target name="main">
+        <java classname="svntag.MAIN" failonerror="true" fork="yes">
+            <classpath refid="svntag.classpath"/>
+        </java>
+    </target>
+    <target name="mainform">
+        <java classname="svntag.mainform" failonerror="true" fork="yes">
+            <classpath refid="svntag.classpath"/>
+        </java>
+    </target>
+</project>
