@@ -40,9 +40,9 @@ public class ListDirectory {
 	        SVNDirEntry entry = ( SVNDirEntry ) iterator.next(); 
 	        if(entry.getKind()==SVNNodeKind.FILE)
 	        {
-	        /*System.out.println("/" + (path.equals("") ? "" : path + "/") + entry.getName() +   
+	        System.out.println("/" + (path.equals("") ? "" : path + "/") + entry.getName() +   
 	                           " ( author: '" + entry.getAuthor() + "'; revision: " + entry.getRevision() +   
-	                           "; date: " + entry.getDate() + ")" +"size:"+entry.getSize()); */
+	                           "; date: " + entry.getDate() + ")" +"size:"+entry.getSize()); 
 	        Node.add(new DefaultMutableTreeNode(entry.getName()+" ×îºó±à¼­£º"+entry.getAuthor()));
 	        
 	        }

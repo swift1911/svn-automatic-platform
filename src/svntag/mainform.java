@@ -8,8 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import java.util.regex.Matcher;
@@ -30,19 +40,40 @@ import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.tmatesoft.sqljet.core.internal.lang.SqlParser.result_column_return;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.io.SVNRepository;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 
 public class mainform extends JFrame{
-
-	public String resUrl;
-	public String username;
-	public String pwd;
+	public static String workpath;
+	public static String resUrl;
+	public static String username;
+	public static String pwd;
+	public static String serverip;
+	public static int port;
 	public static void main(String[] args) throws SVNException {
 		// TODO Auto-generated method stub
 		
-		InputDialog i=new InputDialog();
-
+		//InputDialog i=new InputDialog();
+		
+		
+		try {
+			readxml();
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mainform.InitUI(resUrl, username, pwd);
 	}
 	public static void InitUI(String url,String username,String pwd) throws SVNException
 	{
@@ -58,9 +89,26 @@ public class mainform extends JFrame{
 		}
 		);
 	}
-	
+	public static void readxml() throws ParserConfigurationException, SAXException, IOException
+	{
+		File f=new File("config.xml");
+		DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance(); 
+		DocumentBuilder builder=factory.newDocumentBuilder(); 
+		Document doc = builder.parse(f);
+		NodeList nl = doc.getElementsByTagName("svnconfig");
+		resUrl=doc.getElementsByTagName("url").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("username").item(0).hasChildNodes()==true)
+			username=doc.getElementsByTagName("username").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("passwd").item(0).hasChildNodes()==true)
+			pwd=doc.getElementsByTagName("passwd").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("workpath").item(0).hasChildNodes()==true)
+			workpath=doc.getElementsByTagName("workpath").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("serverip").item(0).hasChildNodes()==true)
+			serverip=doc.getElementsByTagName("serverip").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("port").item(0).hasChildNodes()==true)
+			port=Integer.valueOf(doc.getElementsByTagName("port").item(0).getFirstChild().getNodeValue());
+	}
 }
-
 class InputDialog extends JFrame
 {
 	public InputDialog() 
@@ -135,9 +183,10 @@ class MainWindow extends JFrame
     private JButton modifytag;
     private JTree treeview;
     private JButton getchanglist;
+    private JButton compile;
     
     public MainWindow(String url,String username,String pwd) throws SVNException{
-        super();   
+        super();
         this.setSize(640,640);
         Container container=this.getContentPane();
         container.setLayout(null);
@@ -152,7 +201,52 @@ class MainWindow extends JFrame
         container.add(this.modifytagButton(url, username, pwd));
         container.add(this.gettreeview(url, username, pwd));
         container.add(this.getchangelist(url, username, pwd));
+        container.add(this.compile());
         this.setTitle("自动化版本控制系统");//设置窗口标题
+    }
+    private JButton compile()
+    {
+    	if(compile==null)
+    	{
+    		compile=new JButton();
+    		compile.setText("编译");
+    		compile.setBounds(500,20,80,20);
+    		compile.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					String msg="";
+					try {
+						Socket socket=new Socket(mainform.serverip,mainform.port);
+						OutputStream os=socket.getOutputStream();
+						InputStream is=socket.getInputStream();
+						os.write(".net\n".getBytes());
+						os.flush();
+						socket.setSoTimeout(5000);
+						int s;			
+						while((s=is.read())!=-1)
+						{
+							System.out.print((char)s);
+							msg+=(char)s;
+						}
+						
+				        socket.close();
+					} catch (UnknownHostException e) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "服务器未响应");
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						JOptionPane.showMessageDialog(null, msg);
+						//e.printStackTrace();
+					}
+					
+				}
+			});
+    	}
+    	return compile;
     }
     private JTree gettreeview(String url,String username,String pwd) throws SVNException{
     	if(treeview==null)
@@ -189,7 +283,7 @@ class MainWindow extends JFrame
 						ArrayList<String> changelist=new ArrayList<String>();
 						String showmessege="";
 						int count=0;
-						String writepath="d:\\changelist_"+box1.getSelectedItem().toString()+"_"+box2.getSelectedItem().toString()+".txt";
+						String writepath=mainform.workpath+"changelist_"+box1.getSelectedItem().toString()+"_"+box2.getSelectedItem().toString()+".txt";
 						FileWriter fileWriter=new FileWriter(writepath);
 						while(m.find()) {
 							String addstring=m.group().substring(7);

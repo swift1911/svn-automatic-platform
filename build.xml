@@ -21,36 +21,6 @@
         <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2-javadoc.jar"/>
         <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2-sources.jar"/>
         <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-core-2.2-tests.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-flume-ng-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-flume-ng-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-flume-ng-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-iostreams-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-iostreams-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-iostreams-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jcl-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jcl-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jcl-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jmx-gui-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jmx-gui-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jmx-gui-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jul-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jul-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-jul-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-nosql-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-nosql-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-nosql-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-slf4j-impl-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-slf4j-impl-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-slf4j-impl-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-taglib-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-taglib-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-taglib-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-to-slf4j-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-to-slf4j-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-to-slf4j-2.2-sources.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-web-2.2.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-web-2.2-javadoc.jar"/>
-        <pathelement location="D:/搜狗高速下载/apache-log4j-2.2-bin/apache-log4j-2.2-bin/log4j-web-2.2-sources.jar"/>
         <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant.jar"/>
         <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-antlr.jar"/>
         <pathelement location="D:/搜狗高速下载/apache-ant-1.9.4-bin/apache-ant-1.9.4/lib/ant-apache-bcel.jar"/>
@@ -90,6 +60,17 @@
         <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/svnkit-javahl16-1.8.9.jar"/>
         <pathelement location="D:/搜狗高速下载/org.tmatesoft.svn_1.8.9.standalone/svnkit-1.8.9/lib/trilead-ssh2-1.0.0-build217.jar"/>
         <pathelement location="D:/搜狗高速下载/jython-installer-2.7-rc3/jython.jar"/>
+        <pathelement location="D:/搜狗高速下载/commons-logging-1.2-bin/commons-logging-1.2/commons-logging-1.2.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/slf4j-log4j12-1.7.12.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/jcl-over-slf4j-1.7.12.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/jcl-over-slf4j-1.7.12-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/jul-to-slf4j-1.7.12.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/jul-to-slf4j-1.7.12-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/osgi-over-slf4j-1.7.12.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/osgi-over-slf4j-1.7.12-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/slf4j-api-1.7.12.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/slf4j-log4j12-1.7.12-sources.jar"/>
+        <pathelement location="D:/搜狗高速下载/slf4j-1.7.12/slf4j-1.7.12/slf4j-migrator-1.7.12.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -139,6 +120,12 @@
     </target>
     <target name="mainform">
         <java classname="svntag.mainform" failonerror="true" fork="yes">
+            <arg line="install"/>
+            <classpath refid="svntag.classpath"/>
+        </java>
+    </target>
+    <target name="unittest">
+        <java classname="svntag.unittest" failonerror="true" fork="yes">
             <classpath refid="svntag.classpath"/>
         </java>
     </target>

@@ -231,6 +231,7 @@ public class SVNUtil {
 	    	catch (SVNException e) 
 	    	{ 
 	    		// TODO Auto-generated catch block e.printStackTrace(); }}
+	    		JOptionPane.showMessageDialog(null, "更改tag失败，可能是没有权限");
 	    		e.printStackTrace();	
 	    	}
 	 }

@@ -52,7 +52,7 @@ public class AuthManager {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "svn连接失败！");
+			JOptionPane.showMessageDialog(null, "svn连接失败！请检查用户名密码地址");
 		}
 		return repository;
 	}
