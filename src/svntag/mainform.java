@@ -196,13 +196,13 @@ class MainWindow extends JFrame
         box2=this.getTagBox(box2,url,username,pwd,200,20);
         container.add(box1);
         container.add(box2);
-        //container.add(this.getTextField());
+
         container.add(this.getMaketagButton(url,username,pwd));
         container.add(this.modifytagButton(url, username, pwd));
         container.add(this.gettreeview(url, username, pwd));
         container.add(this.getchangelist(url, username, pwd));
         container.add(this.compile());
-        this.setTitle("自动化版本控制系统");//设置窗口标题
+        this.setTitle("svn air");
     }
     private JButton compile()
     {
