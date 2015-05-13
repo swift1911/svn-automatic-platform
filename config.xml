@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <config>
 <localconfig>
-   <lusername>suoxinxin</lusername>
-   <luserpwd>123456</luserpwd>
+   <lusername>swift</lusername>
+   <luserpwd>123</luserpwd>
    <dbname>test</dbname>
 　　 <workpath>e:\\</workpath>
    <serverip>127.0.0.1</serverip>
    <port>8001</port>
 </localconfig>
 <svnconfig>
-	<url>file:///f:/net</url>
-	<username></username>
-	<passwd></passwd>
+	<url>https://192.168.10.110/svn/svn-air-test/</url>
+	<username>swift</username>
+	<passwd>!@WSXadjSwift</passwd>
 </svnconfig>
 </config>

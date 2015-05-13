@@ -79,11 +79,12 @@ public class mainform extends JFrame{
 	}
 	public static void InitUI(String url,String username,String pwd) throws SVNException
 	{
+		JOptionPane.showMessageDialog(null, usergroup);
 		final JFrame f=new MainWindow(url,username,pwd);
 
 		f.setVisible(true);
 		f.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosed(WindowEvent e){
 				System.exit(0);
@@ -95,7 +96,7 @@ public class mainform extends JFrame{
 	{
 		try
 		{
-		Mongo mongoClient=new Mongo("192.168.10.165",27017);
+		Mongo mongoClient=new Mongo(serverip,27017);
 		DB db=mongoClient.getDB(dbname);
 		DBObject obj=new BasicDBObject();
 		obj.put("username", lusername);
