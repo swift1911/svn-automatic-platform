@@ -1,27 +1,19 @@
 package svntag;
 
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,19 +31,26 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-
-
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.tmatesoft.sqljet.core.internal.lang.SqlParser.result_column_return;
+import org.python.core.exceptions;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.io.SVNRepository;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoDatabase;
 
 
 public class mainform extends JFrame{
@@ -61,14 +60,17 @@ public class mainform extends JFrame{
 	public static String pwd;
 	public static String serverip;
 	public static int port;
+	public static String lusername;
+	public static String luserpwd;
+	public static String dbname;
+	public static String usergroup;
 	public static void main(String[] args) throws SVNException {
 		// TODO Auto-generated method stub
 		
 		//InputDialog i=new InputDialog();
-		
-		
 		try {
 			readxml();
+			dbconnection();
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,6 +91,32 @@ public class mainform extends JFrame{
 		}
 		);
 	}
+	public static void dbconnection()
+	{
+		try
+		{
+		Mongo mongoClient=new Mongo("192.168.10.165",27017);
+		DB db=mongoClient.getDB(dbname);
+		DBObject obj=new BasicDBObject();
+		obj.put("username", lusername);
+		obj.put("userpwd", luserpwd);
+		DBCursor cursor=db.getCollection("user").find(obj);
+		if(cursor.hasNext())
+		{
+			usergroup=cursor.next().get("usergroup").toString();
+		}
+		else
+		{
+			throw new IllegalArgumentException("用户名或密码错误");   
+		}
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			System.exit(1);
+		}
+		
+	}
 	public static void readxml() throws ParserConfigurationException, SAXException, IOException
 	{
 		File f=new File("config.xml");
@@ -107,6 +135,12 @@ public class mainform extends JFrame{
 			serverip=doc.getElementsByTagName("serverip").item(0).getFirstChild().getNodeValue();
 		if(doc.getElementsByTagName("port").item(0).hasChildNodes()==true)
 			port=Integer.valueOf(doc.getElementsByTagName("port").item(0).getFirstChild().getNodeValue());
+		if(doc.getElementsByTagName("lusername").item(0).hasChildNodes()==true)
+			lusername=doc.getElementsByTagName("lusername").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("luserpwd").item(0).hasChildNodes()==true)
+			luserpwd=doc.getElementsByTagName("luserpwd").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("dbname").item(0).hasChildNodes()==true)
+			dbname=doc.getElementsByTagName("dbname").item(0).getFirstChild().getNodeValue();
 	}
 }
 class InputDialog extends JFrame
@@ -184,7 +218,7 @@ class MainWindow extends JFrame
     private JTree treeview;
     private JButton getchanglist;
     private JButton compile;
-    
+    private JButton backup;
     public MainWindow(String url,String username,String pwd) throws SVNException{
         super();
         this.setSize(640,640);
@@ -196,13 +230,48 @@ class MainWindow extends JFrame
         box2=this.getTagBox(box2,url,username,pwd,200,20);
         container.add(box1);
         container.add(box2);
-
-        container.add(this.getMaketagButton(url,username,pwd));
-        container.add(this.modifytagButton(url, username, pwd));
-        container.add(this.gettreeview(url, username, pwd));
-        container.add(this.getchangelist(url, username, pwd));
-        container.add(this.compile());
+        if(mainform.usergroup.equals("develop"))
+        {
+        	container.add(this.getMaketagButton(url,username,pwd));
+        	//container.add(this.modifytagButton(url, username, pwd));
+        	container.add(this.gettreeview(url, username, pwd));
+        	container.add(this.getchangelist(url, username, pwd));
+        	container.add(this.compile());
+        }
+        if(mainform.usergroup.equals("test")) 
+        {
+        	container.add(this.getMaketagButton(url,username,pwd));
+        	container.add(this.modifytagButton(url, username, pwd));
+        	container.add(this.gettreeview(url, username, pwd));
+        	container.add(this.getchangelist(url, username, pwd));
+        	//container.add(this.compile());
+        }
+        if(mainform.usergroup.equals("run"))
+        {
+        	container.add(this.getMaketagButton(url,username,pwd));
+        	//container.add(this.modifytagButton(url, username, pwd));
+        	container.add(this.gettreeview(url, username, pwd));
+        	container.add(this.getchangelist(url, username, pwd));
+        	//container.add(this.compile());
+        }
         this.setTitle("svn air");
+    }
+    private JButton backup()
+    {
+    	if(backup==null)
+    	{
+    		backup=new JButton();
+    		backup.setText("当前trunk输出到branch");
+    		backup.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+    	}
+    	return backup;
     }
     private JButton compile()
     {
@@ -230,7 +299,6 @@ class MainWindow extends JFrame
 							System.out.print((char)s);
 							msg+=(char)s;
 						}
-						
 				        socket.close();
 					} catch (UnknownHostException e) {
 						// TODO Auto-generated catch block
@@ -238,7 +306,7 @@ class MainWindow extends JFrame
 						e.printStackTrace();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						//e.printStackTrace();
 						JOptionPane.showMessageDialog(null, msg);
 						//e.printStackTrace();
 					}
@@ -337,6 +405,7 @@ class MainWindow extends JFrame
 					if(newtag!=null && newtag!="")
 					{
 						util.moveModel(url+"/tags/"+box1.getSelectedItem().toString(), url+"/tags/"+newtag);
+						JOptionPane.showMessageDialog(null, "修改tag成功");
 					}
 				}
 				catch(Exception e)
@@ -367,7 +436,7 @@ class MainWindow extends JFrame
 					String tag =JOptionPane.showInputDialog("请输入标签（一个好记的东西）：");
 					if(tag!=null && tag!="")
 					{
-						util.maketag(url+"/trunk",url+"/tags/"+tag, "");
+						util.maketag(url+"/trunk",url+"/branches/"+tag, "");
 						JOptionPane.showMessageDialog(null,"tag成功");
 					}
 				} catch (SVNException e1) {

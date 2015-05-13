@@ -13,12 +13,6 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.DefaultLogger;
-import org.apache.tools.ant.Project;
-import org.apache.tools.ant.ProjectHelper;
 import org.python.icu.impl.coll.Collation;
 import org.tmatesoft.svn.core.SVNDepth;
 import org.tmatesoft.svn.core.SVNException;
@@ -82,31 +76,7 @@ public class SVNUtil {
     		e.printStackTrace();	
     	}
 	}
-	public void Javabuild(String path)
-	{
-		File buildFile=new File(resURL+"/"+path+"/build.xml");
-        //创建一个ANT项目
-        Project p=new Project();
-        //创建一个默认的监听器,监听项目构建过程中的日志操作
-        DefaultLogger consoleLogger = new DefaultLogger();
-        consoleLogger.setErrorPrintStream(System.err);
-        consoleLogger.setOutputPrintStream(System.out);
-        consoleLogger.setMessageOutputLevel(Project.MSG_INFO);
-        p.addBuildListener(consoleLogger);
-        try{
-                 p.fireBuildStarted();
-                 //初始化该项目
-                 p.init();
-                 ProjectHelper helper=ProjectHelper.getProjectHelper();
-                 //解析项目的构建文件
-                 helper.parse(p,buildFile);
-                 //执行项目的某一个目标
-                 p.executeTarget(p.getDefaultTarget());
-                 p.fireBuildFinished(null);
-        }catch(BuildException be){
-                 p.fireBuildFinished(be);
-        }
-	}
+	
 	public void uploadMoel(String dirPath,String modelName)
 	{ 
 		File impDir = new File(dirPath); 

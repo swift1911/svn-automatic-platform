@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <config>
 <localconfig>
+   <lusername>suoxinxin</lusername>
+   <luserpwd>123456</luserpwd>
+   <dbname>test</dbname>
 　　 <workpath>e:\\</workpath>
    <serverip>127.0.0.1</serverip>
    <port>8001</port>
