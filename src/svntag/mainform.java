@@ -56,14 +56,15 @@ import com.mongodb.client.MongoDatabase;
 public class mainform extends JFrame{
 	public static String workpath;
 	public static String resUrl;
-	public static String username;
-	public static String pwd;
+	public static String svnusername;
+	public static String svnpwd;
 	public static String serverip;
 	public static int port;
 	public static String lusername;
 	public static String luserpwd;
 	public static String dbname;
 	public static String usergroup;
+	public static String language;
 	public static void main(String[] args) throws SVNException {
 		// TODO Auto-generated method stub
 		
@@ -75,7 +76,7 @@ public class mainform extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mainform.InitUI(resUrl, username, pwd);
+		mainform.InitUI(resUrl, svnusername, svnpwd);
 	}
 	public static void InitUI(String url,String username,String pwd) throws SVNException
 	{
@@ -127,9 +128,9 @@ public class mainform extends JFrame{
 		NodeList nl = doc.getElementsByTagName("svnconfig");
 		resUrl=doc.getElementsByTagName("url").item(0).getFirstChild().getNodeValue();
 		if(doc.getElementsByTagName("username").item(0).hasChildNodes()==true)
-			username=doc.getElementsByTagName("username").item(0).getFirstChild().getNodeValue();
+			svnusername=doc.getElementsByTagName("username").item(0).getFirstChild().getNodeValue();
 		if(doc.getElementsByTagName("passwd").item(0).hasChildNodes()==true)
-			pwd=doc.getElementsByTagName("passwd").item(0).getFirstChild().getNodeValue();
+			svnpwd=doc.getElementsByTagName("passwd").item(0).getFirstChild().getNodeValue();
 		if(doc.getElementsByTagName("workpath").item(0).hasChildNodes()==true)
 			workpath=doc.getElementsByTagName("workpath").item(0).getFirstChild().getNodeValue();
 		if(doc.getElementsByTagName("serverip").item(0).hasChildNodes()==true)
@@ -142,6 +143,8 @@ public class mainform extends JFrame{
 			luserpwd=doc.getElementsByTagName("luserpwd").item(0).getFirstChild().getNodeValue();
 		if(doc.getElementsByTagName("dbname").item(0).hasChildNodes()==true)
 			dbname=doc.getElementsByTagName("dbname").item(0).getFirstChild().getNodeValue();
+		if(doc.getElementsByTagName("language").item(0).hasChildNodes()==true)
+			language=doc.getElementsByTagName("language").item(0).getFirstChild().getNodeValue();
 	}
 }
 class InputDialog extends JFrame
@@ -291,7 +294,9 @@ class MainWindow extends JFrame
 						Socket socket=new Socket(mainform.serverip,mainform.port);
 						OutputStream os=socket.getOutputStream();
 						InputStream is=socket.getInputStream();
-						os.write(".net\n".getBytes());
+						JsonBuild jsonBuild=new JsonBuild();
+						String tgm=JOptionPane.showInputDialog("请输入一个tag");
+						os.write(JsonBuild.build(mainform.svnusername, mainform.svnpwd, mainform.resUrl,mainform.language,tgm).getBytes());
 						os.flush();
 						socket.setSoTimeout(5000);
 						int s;			
@@ -308,7 +313,14 @@ class MainWindow extends JFrame
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						//e.printStackTrace();
-						JOptionPane.showMessageDialog(null, msg);
+						if(msg=="")
+						{
+							JOptionPane.showMessageDialog(null, "开始编译，结果将以邮件发送");
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, msg);
+						}
 						//e.printStackTrace();
 					}
 					
@@ -391,10 +403,10 @@ class MainWindow extends JFrame
     	{
     		modifytag=new JButton();
     		modifytag.setBounds(0,200,80,20);
-    		modifytag.setText("更改tag");
+    		modifytag.setText("测试完成修改tag");
     	}
     	modifytag.addActionListener(new ActionListener() {
-			
+    		
 			@Override
 			public void actionPerformed(ActionEvent paramActionEvent) {
 				// TODO Auto-generated method stub
@@ -407,6 +419,12 @@ class MainWindow extends JFrame
 					{
 						util.moveModel(url+"/tags/"+box1.getSelectedItem().toString(), url+"/tags/"+newtag);
 						JOptionPane.showMessageDialog(null, "修改tag成功");
+						Socket socket=new Socket(mainform.serverip,mainform.port);
+						OutputStream os=socket.getOutputStream();
+						JsonBuild jsonBuild=new JsonBuild();
+						os.write(JsonBuild.build(mainform.svnusername, mainform.svnpwd, mainform.resUrl,"testok",newtag).getBytes());
+						os.flush();
+						socket.close();
 					}
 				}
 				catch(Exception e)

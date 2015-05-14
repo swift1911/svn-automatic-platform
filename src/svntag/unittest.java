@@ -37,7 +37,6 @@ public class unittest {
 			InputStream is=socket.getInputStream();
 			os.write("java\n".getBytes());
 			os.flush();
-
 			int s;
 			socket.setSoTimeout(3000);
 			while((s=is.read())!=-1)
